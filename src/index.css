@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes floatAnim {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-16px) rotate(8deg); }
+  }
+
+  @keyframes bounceMascot {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.15) translateY(-6px); }
+  }
+
+  @keyframes keyPulseAnim {
+    0% { transform: translateY(0) scale(1); box-shadow: 0 0 14px #FF4081; }
+    50% { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 28px #FFD700; }
+    100% { transform: translateY(0) scale(1); box-shadow: 0 0 14px #FF4081; }
+  }
+
+  @keyframes chestWiggle {
+    0% { transform: rotate(-7deg) scale(1); }
+    100% { transform: rotate(7deg) scale(1.1); }
+  }
+
+  @keyframes popInAnim {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes bubbleDrop {
+    0% { top: -40px; opacity: 0.9; transform: scale(0.8); }
+    85% { opacity: 1; transform: scale(1.08); }
+    100% { top: calc(100% - 48px); opacity: 0; transform: scale(1.25); }
+  }
+
+  .animate-float-slow {
+    animation: floatAnim 5s ease-in-out infinite alternate;
+  }
+
+  .animate-bounce-mascot {
+    animation: bounceMascot 1.2s infinite alternate ease-in-out;
+  }
+
+  .animate-key-pulse {
+    animation: keyPulseAnim 1.2s infinite ease-in-out;
+  }
+
+  .animate-chest-wiggle {
+    animation: chestWiggle 0.9s infinite alternate ease-in-out;
+  }
+
+  .animate-pop-in {
+    animation: popInAnim 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .animate-bubble-drop {
+    animation: bubbleDrop 3s linear forwards;
+  }
+}
+
+/* Xylophone wood bar theme */
+.xylophone-mode .piano-key {
+  border-radius: 12px !important;
+  border: 4px solid #8D6E63 !important;
+  box-shadow: 0 8px 0 #5D4037, 0 12px 18px rgba(93, 64, 55, 0.22) !important;
+}
+
+.xylophone-mode .piano-key::after {
+  content: '●';
+  position: absolute;
+  top: 8px;
+  color: #ECEFF1;
+  font-size: 13px;
+}

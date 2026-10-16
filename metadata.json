@@ -1,0 +1,6 @@
+{
+  "name": "Vườn Âm Nhạc Bé Yêu",
+  "description": "Trò chơi đàn piano và đa nhạc cụ tương tác cho bé với các bài hát thiếu nhi Việt Nam, rương thưởng thú bông và ghi âm.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
