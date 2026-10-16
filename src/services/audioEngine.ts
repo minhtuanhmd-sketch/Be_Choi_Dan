@@ -45,6 +45,30 @@ export class AudioEngine {
     return this.isMuted;
   }
 
+  public playBubblePopSound() {
+    this.init();
+    if (!this.ctx || !this.limiter || this.isMuted) return;
+
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(420, now);
+    osc.frequency.exponentialRampToValueAtTime(920, now + 0.03);
+    osc.frequency.exponentialRampToValueAtTime(320, now + 0.065);
+
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.4, now + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.075);
+
+    osc.connect(gain);
+    gain.connect(this.limiter);
+
+    osc.start(now);
+    osc.stop(now + 0.085);
+  }
+
   public playNote(note: NoteName, customInstrument?: InstrumentType) {
     this.init();
     if (!this.ctx || !this.limiter || this.isMuted) return;

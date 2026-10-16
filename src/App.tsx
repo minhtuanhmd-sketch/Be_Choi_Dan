@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { GameLevel, InstrumentType, NoteName, Plushie, SavedRecording, RecordedNote } from './types';
-import { SONGS, SOLFEGE } from './data/songs';
+import { SONGS, SOLFEGE, KEYBOARD_CONFIG } from './data/songs';
 import { PLUSHIES } from './data/plushies';
 import { audioEngine } from './services/audioEngine';
 import { Keyboard } from './components/Keyboard';
@@ -24,7 +24,7 @@ export default function App() {
   const [currentLevel, setCurrentLevel] = useState<GameLevel>(1);
   const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
   const [currentNoteIndex, setCurrentNoteIndex] = useState<number>(0);
-  const [currentInstrument, setCurrentInstrument] = useState<InstrumentType>('piano');
+  const currentInstrument: InstrumentType = 'piano';
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
   // Scoring
@@ -71,6 +71,14 @@ export default function App() {
 
   const activeSong = SONGS[currentSongIndex];
   const targetNoteObj = activeSong.notes[currentNoteIndex] || null;
+  const nextNoteObj = activeSong.notes[currentNoteIndex + 1] || null;
+  const nextTargetNote = nextNoteObj ? nextNoteObj.n : null;
+  const nextNotesPreview = activeSong.notes
+    .slice(currentNoteIndex + 1, currentNoteIndex + 3)
+    .map((n) => ({
+      solfege: SOLFEGE[n.n],
+      num: KEYBOARD_CONFIG.find((k) => k.note === n.n)?.numKey || '',
+    }));
   const isSongFinished = currentNoteIndex >= activeSong.notes.length;
 
   // Track window resize and orientation
@@ -111,6 +119,7 @@ export default function App() {
 
   // Audio unlock listener
   useEffect(() => {
+    audioEngine.currentInstrument = 'piano';
     const handleFirstGesture = () => {
       audioEngine.init();
       window.removeEventListener('pointerdown', handleFirstGesture);
@@ -118,16 +127,6 @@ export default function App() {
     window.addEventListener('pointerdown', handleFirstGesture);
     return () => window.removeEventListener('pointerdown', handleFirstGesture);
   }, []);
-
-  // Update instrument mode class for xylophone wood textures
-  useEffect(() => {
-    audioEngine.currentInstrument = currentInstrument;
-    if (currentInstrument === 'xylophone') {
-      document.body.classList.add('xylophone-mode');
-    } else {
-      document.body.classList.remove('xylophone-mode');
-    }
-  }, [currentInstrument]);
 
   // Handle Note Pressed
   const handleNotePressed = useCallback((note: NoteName) => {
@@ -428,7 +427,7 @@ export default function App() {
           <header className="flex items-center justify-between gap-1 px-2 py-1 bg-white/90 backdrop-blur-md rounded-xl shadow-[0_4px_12px_rgba(255,105,180,0.18)] border border-[#FFD1DC] flex-shrink-0">
             <div className="flex items-center gap-1 text-xs sm:text-sm font-black text-[#E91E63] tracking-tight whitespace-nowrap">
               <span>🎹</span>
-              <span className="drop-shadow-[0_1px_0_#FFF]">Vườn Âm Nhạc</span>
+              <span className="drop-shadow-[0_1px_0_#FFF]">Grand Piano Bé Yêu</span>
               <span>🌸</span>
             </div>
 
@@ -453,9 +452,20 @@ export default function App() {
                       ? 'bg-gradient-to-r from-[#FF4081] to-[#FF80AB] text-white shadow-xs'
                       : 'text-[#C2185B] hover:bg-white'
                   }`}
-                  title="Cấp 2: Bong bóng nhịp điệu"
+                  title="Cấp 2: Bong bóng nhịp điệu 3D"
                 >
                   🎈 Bong Bóng
+                </button>
+                <button
+                  onClick={() => handleSelectLevel(4)}
+                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
+                    currentLevel === 4
+                      ? 'bg-gradient-to-r from-[#FF4081] to-[#FF80AB] text-white shadow-xs'
+                      : 'text-[#C2185B] hover:bg-white'
+                  }`}
+                  title="Cấp 4: Luyện ngón phím sáng theo thứ tự nốt nhạc"
+                >
+                  👆 Luyện Ngón
                 </button>
                 <button
                   onClick={() => handleSelectLevel(3)}
@@ -514,44 +524,21 @@ export default function App() {
             </div>
           </header>
 
-          {/* Instrument Bar (Compact Row ~24px) */}
-          <div className="flex gap-1 justify-center flex-shrink-0 my-0.5 overflow-x-auto py-0.5 scrollbar-none">
-            {[
-              { id: 'piano', label: 'Grand Piano', icon: '🎹' },
-              { id: 'xylophone', label: 'Mộc Cầm', icon: '🪵' },
-              { id: 'musicbox', label: 'Hộp Nhạc', icon: '🎠' },
-              { id: 'funsynth', label: 'Vui Nhộn', icon: '🐶' },
-            ].map((inst) => (
-              <button
-                key={inst.id}
-                onClick={() => setCurrentInstrument(inst.id as InstrumentType)}
-                className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 transition-all cursor-pointer whitespace-nowrap shadow-xs ${
-                  currentInstrument === inst.id
-                    ? 'bg-gradient-to-r from-[#FF4081] to-[#FF80AB] text-white border border-[#F50057] shadow-[0_2px_6px_rgba(245,0,87,0.25)]'
-                    : 'bg-white border border-[#FFB6C1] text-[#C2185B] hover:bg-[#FFF0F5]'
-                }`}
-              >
-                <span>{inst.icon}</span>
-                <span>{inst.label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Song Carousel Bar (Compact Row ~28px) */}
-          <div className="flex gap-1 overflow-x-auto py-0.5 px-0.5 scrollbar-none flex-shrink-0">
+          {/* 11 Song Carousel Bar (Compact Row ~30px) */}
+          <div className="flex gap-1.5 overflow-x-auto py-1 px-0.5 scrollbar-none flex-shrink-0">
             {SONGS.map((song, idx) => (
               <button
                 key={song.id}
                 onClick={() => handleSelectSong(idx)}
-                className={`flex-shrink-0 flex items-center gap-1 px-2 py-0.5 rounded-xl border transition-all cursor-pointer text-left ${
+                className={`flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-xl border transition-all cursor-pointer text-left ${
                   idx === currentSongIndex
-                    ? 'bg-gradient-to-r from-[#FFF0F5] to-[#FFE4E1] border-[#E91E63] shadow-xs'
-                    : 'bg-white border-[#FFB6C1] hover:border-[#FF4081] opacity-90'
+                    ? 'bg-gradient-to-r from-[#FFF0F5] to-[#FFE4E1] border-[#E91E63] shadow-xs ring-1 ring-[#FF4081]'
+                    : 'bg-white/95 border-[#FFB6C1] hover:border-[#FF4081] opacity-90'
                 }`}
               >
-                <span className="text-sm filter drop-shadow-xs">{song.icon}</span>
+                <span className="text-base filter drop-shadow-xs">{song.icon}</span>
                 <div>
-                  <div className="text-[10px] font-black text-[#D81B60] leading-none whitespace-nowrap">
+                  <div className="text-[11px] font-black text-[#D81B60] leading-none whitespace-nowrap">
                     {song.title}
                   </div>
                 </div>
@@ -569,6 +556,7 @@ export default function App() {
               progressPercent={progressPercent}
               accuracy={accuracy}
               level={currentLevel}
+              nextNotesPreview={nextNotesPreview}
             />
           </div>
 
@@ -578,6 +566,8 @@ export default function App() {
             targetMascot={activeSong.mascot}
             currentLyric={targetNoteObj ? targetNoteObj.lyric : ''}
             isLevel2={currentLevel === 2}
+            isPracticeMode={currentLevel === 4}
+            nextTargetNote={currentLevel === 4 ? nextTargetNote : null}
             onKeyPress={handleNotePressed}
           />
         </div>

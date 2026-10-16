@@ -35,4 +35,4 @@ export interface SavedRecording {
   instrument: InstrumentType;
 }
 
-export type GameLevel = 1 | 2 | 3; // 1: Dẫn lối, 2: Bong bóng, 3: Tự do
+export type GameLevel = 1 | 2 | 3 | 4; // 1: Dẫn lối, 2: Bong bóng, 3: Tự do, 4: Luyện ngón (Finger Practice)

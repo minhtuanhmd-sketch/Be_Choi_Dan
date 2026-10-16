@@ -9,6 +9,7 @@ interface StageCardProps {
   progressPercent: number;
   accuracy: number;
   level: GameLevel;
+  nextNotesPreview?: Array<{ solfege: string; num: string }>;
 }
 
 export const StageCard: React.FC<StageCardProps> = ({
@@ -19,6 +20,7 @@ export const StageCard: React.FC<StageCardProps> = ({
   progressPercent,
   accuracy,
   level,
+  nextNotesPreview,
 }) => {
   const getStars = () => {
     if (level === 3) return '✨✨✨';
@@ -32,15 +34,31 @@ export const StageCard: React.FC<StageCardProps> = ({
       {/* Mascot & Lyric info */}
       <div className="flex items-center gap-2">
         <span className="text-2xl sm:text-3xl animate-bounce-mascot inline-block filter drop-shadow">
-          {mascot}
+          {level === 4 ? '👆' : mascot}
         </span>
         <div className="text-left">
           <div className="text-xs sm:text-sm font-black text-[#C2185B] tracking-wide leading-tight truncate max-w-[240px] sm:max-w-xs">
-            {level === 3 ? 'Bé Sáng Tác Tự Do 🎶' : `"${currentLyric}"`}
+            {level === 3
+              ? 'Bé Sáng Tác Tự Do 🎶'
+              : level === 4
+              ? `Luyện Ngón: "${currentLyric}"`
+              : `"${currentLyric}"`}
           </div>
-          <div className="text-[10px] sm:text-xs text-[#880E4F] font-semibold mt-0.5 leading-none">
+          <div className="text-[10px] sm:text-xs text-[#880E4F] font-semibold mt-0.5 leading-none flex items-center gap-1.5 flex-wrap">
             {level === 3 ? (
               'Bé tự do gõ phím sáng tác giai điệu!'
+            ) : level === 4 ? (
+              <>
+                <span className="text-[#C2185B] font-bold">Chạm phím sáng:</span>
+                <span className="bg-[#FFE4E1] text-[#D81B60] font-black px-1.5 py-0.2 rounded border border-[#FF80AB]">
+                  {targetSolfege} ({targetNote})
+                </span>
+                {nextNotesPreview && nextNotesPreview.length > 0 && (
+                  <span className="opacity-75 text-[10px] hidden sm:inline">
+                    ➔ Kế tiếp: {nextNotesPreview.map((n) => n.solfege).join(' ➔ ')}
+                  </span>
+                )}
+              </>
             ) : (
               <>
                 Bé gõ nốt: <strong className="text-[#D81B60] underline decoration-[#FF80AB] underline-offset-2">{targetSolfege} ({targetNote})</strong> nhé!

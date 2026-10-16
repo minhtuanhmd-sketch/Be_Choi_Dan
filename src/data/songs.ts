@@ -34,6 +34,113 @@ export const KEYBOARD_CONFIG: Array<{ note: NoteName; numKey: string; colorClass
 ];
 
 export const SONGS: Song[] = [
+  // 1. Ai yêu Bác Hồ Chí Minh hơn thiếu niên nhi đồng (Phong Nhã)
+  {
+    id: 'ai_yeu_bac_ho',
+    title: 'Ai Yêu Bác Hồ Chí Minh',
+    icon: '🌸',
+    mascot: '🌸',
+    notes: [
+      { n: 'C4', lyric: 'Ai' }, { n: 'D4', lyric: 'yêu' }, { n: 'E4', lyric: 'Bác' }, { n: 'G4', lyric: 'Hồ' }, { n: 'A4', lyric: 'Chí' }, { n: 'G4', lyric: 'Minh' },
+      { n: 'E4', lyric: 'hơn' }, { n: 'D4', lyric: 'thiếu' }, { n: 'E4', lyric: 'niên' }, { n: 'G4', lyric: 'nhi' }, { n: 'C4', lyric: 'đồng' },
+      { n: 'C4', lyric: 'Ai' }, { n: 'D4', lyric: 'yêu' }, { n: 'E4', lyric: 'Bác' }, { n: 'G4', lyric: 'Hồ' }, { n: 'A4', lyric: 'Chí' }, { n: 'G4', lyric: 'Minh' },
+      { n: 'E4', lyric: 'hơn' }, { n: 'D4', lyric: 'thiếu' }, { n: 'E4', lyric: 'nhi' }, { n: 'D4', lyric: 'Việt' }, { n: 'C4', lyric: 'Nam' },
+      { n: 'E4', lyric: 'Bác' }, { n: 'G4', lyric: 'chúng' }, { n: 'A4', lyric: 'em' }, { n: 'C5', lyric: 'dáng' }, { n: 'A4', lyric: 'cao' }, { n: 'G4', lyric: 'cao' },
+      { n: 'E4', lyric: 'người' }, { n: 'D4', lyric: 'thanh' }, { n: 'C4', lyric: 'thanh' },
+      { n: 'E4', lyric: 'Bác' }, { n: 'G4', lyric: 'chúng' }, { n: 'A4', lyric: 'em' }, { n: 'C5', lyric: 'mắt' }, { n: 'A4', lyric: 'như' }, { n: 'G4', lyric: 'sao' },
+      { n: 'E4', lyric: 'râu' }, { n: 'D4', lyric: 'hơi' }, { n: 'C4', lyric: 'dài' },
+      { n: 'E4', lyric: 'Hồ' }, { n: 'G4', lyric: 'Chí' }, { n: 'A4', lyric: 'Minh' }, { n: 'G4', lyric: 'kính' }, { n: 'C4', lyric: 'yêu!' },
+    ],
+  },
+
+  // 2. Cháu Yêu Bà (Xuân Giao)
+  {
+    id: 'chau_yeu_ba',
+    title: 'Cháu Yêu Bà',
+    icon: '👵',
+    mascot: '👵',
+    notes: [
+      { n: 'G4', lyric: 'Bà' }, { n: 'E4', lyric: 'ơi' }, { n: 'C4', lyric: 'bà' },
+      { n: 'G4', lyric: 'cháu' }, { n: 'E4', lyric: 'yêu' }, { n: 'C4', lyric: 'bà' }, { n: 'D4', lyric: 'lắm' },
+      { n: 'E4', lyric: 'Tóc' }, { n: 'D4', lyric: 'bà' }, { n: 'E4', lyric: 'trắng' },
+      { n: 'C4', lyric: 'màu' }, { n: 'D4', lyric: 'trắng' }, { n: 'E4', lyric: 'như' }, { n: 'C4', lyric: 'mây' },
+      { n: 'G4', lyric: 'Cháu' }, { n: 'E4', lyric: 'yêu' }, { n: 'C4', lyric: 'bà' },
+      { n: 'G4', lyric: 'cháu' }, { n: 'E4', lyric: 'nắm' }, { n: 'C4', lyric: 'bàn' }, { n: 'D4', lyric: 'tay' },
+      { n: 'E4', lyric: 'Khi' }, { n: 'G4', lyric: 'cháu' }, { n: 'A4', lyric: 'vâng' }, { n: 'G4', lyric: 'lời' },
+      { n: 'E4', lyric: 'cháu' }, { n: 'D4', lyric: 'biết' }, { n: 'E4', lyric: 'bà' }, { n: 'C4', lyric: 'vui!' },
+    ],
+  },
+
+  // 3. Đoàn Tàu Nhỏ Xíu (Mộng Lân / Nguyễn Văn Tý)
+  {
+    id: 'doan_tau_nho_xiu',
+    title: 'Đoàn Tàu Nhỏ Xíu',
+    icon: '🚂',
+    mascot: '🚂',
+    notes: [
+      { n: 'C4', lyric: 'Một' }, { n: 'D4', lyric: 'đoàn' }, { n: 'E4', lyric: 'tàu' }, { n: 'G4', lyric: 'nhỏ' }, { n: 'C5', lyric: 'xíu' },
+      { n: 'C5', lyric: 'xíu' }, { n: 'C5', lyric: 'xíu' },
+      { n: 'G4', lyric: 'Bước' }, { n: 'E4', lyric: 'vội' }, { n: 'G4', lyric: 'bước' }, { n: 'C4', lyric: 'mau' },
+      { n: 'C4', lyric: 'Tàu' }, { n: 'D4', lyric: 'đi' }, { n: 'E4', lyric: 'sao' }, { n: 'G4', lyric: 'mau' }, { n: 'C5', lyric: 'thế' },
+      { n: 'G4', lyric: 'Tu' }, { n: 'A4', lyric: 'tu' }, { n: 'G4', lyric: 'tu' }, { n: 'E4', lyric: 'tu' },
+      { n: 'D4', lyric: 'Tu' }, { n: 'E4', lyric: 'tu' }, { n: 'D4', lyric: 'tu' }, { n: 'C4', lyric: 'tu!' },
+    ],
+  },
+
+  // 4. Baby Shark (Pinkfong)
+  {
+    id: 'baby_shark',
+    title: 'Baby Shark',
+    icon: '🦈',
+    mascot: '🦈',
+    notes: [
+      { n: 'D4', lyric: 'Ba-' }, { n: 'E4', lyric: 'by' }, { n: 'G4', lyric: 'shark' },
+      { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' },
+      { n: 'D4', lyric: 'Ba-' }, { n: 'E4', lyric: 'by' }, { n: 'G4', lyric: 'shark' },
+      { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' },
+      { n: 'D4', lyric: 'Ba-' }, { n: 'E4', lyric: 'by' }, { n: 'G4', lyric: 'shark' },
+      { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' }, { n: 'G4', lyric: 'doo' },
+      { n: 'G4', lyric: 'Ba-' }, { n: 'G4', lyric: 'by' }, { n: 'F4', lyric: 'shark!' },
+    ],
+  },
+
+  // 5. Cả Nhà Thương Nhau (Phan Văn Minh)
+  {
+    id: 'ca_nha_thuong_nhau',
+    title: 'Cả Nhà Thương Nhau',
+    icon: '👨‍👩‍👧',
+    mascot: '👨‍👩‍👧',
+    notes: [
+      { n: 'C4', lyric: 'Ba' }, { n: 'D4', lyric: 'thương' }, { n: 'E4', lyric: 'con' },
+      { n: 'E4', lyric: 'vì' }, { n: 'G4', lyric: 'con' }, { n: 'E4', lyric: 'giống' }, { n: 'C4', lyric: 'mẹ' },
+      { n: 'D4', lyric: 'Mẹ' }, { n: 'E4', lyric: 'thương' }, { n: 'F4', lyric: 'con' },
+      { n: 'F4', lyric: 'vì' }, { n: 'A4', lyric: 'con' }, { n: 'F4', lyric: 'giống' }, { n: 'D4', lyric: 'ba' },
+      { n: 'E4', lyric: 'Cả' }, { n: 'G4', lyric: 'nhà' }, { n: 'C5', lyric: 'ta' },
+      { n: 'C5', lyric: 'cùng' }, { n: 'A4', lyric: 'thương' }, { n: 'G4', lyric: 'yêu' }, { n: 'E4', lyric: 'nhau' },
+      { n: 'C4', lyric: 'Xa' }, { n: 'D4', lyric: 'là' }, { n: 'E4', lyric: 'nhớ' },
+      { n: 'D4', lyric: 'gần' }, { n: 'E4', lyric: 'nhau' }, { n: 'D4', lyric: 'là' }, { n: 'C4', lyric: 'cười!' },
+    ],
+  },
+
+  // 6. Đi Học Về (Hoàng Lân)
+  {
+    id: 'di_hoc_ve',
+    title: 'Đi Học Về',
+    icon: '🎒',
+    mascot: '🎒',
+    notes: [
+      { n: 'C4', lyric: 'Đi' }, { n: 'D4', lyric: 'học' }, { n: 'E4', lyric: 'về' },
+      { n: 'C4', lyric: 'là' }, { n: 'D4', lyric: 'đi' }, { n: 'E4', lyric: 'học' }, { n: 'G4', lyric: 'về' },
+      { n: 'G4', lyric: 'Em' }, { n: 'A4', lyric: 'vào' }, { n: 'G4', lyric: 'nhà' },
+      { n: 'E4', lyric: 'em' }, { n: 'D4', lyric: 'chào' }, { n: 'E4', lyric: 'cha' }, { n: 'C4', lyric: 'mẹ' },
+      { n: 'C4', lyric: 'Cha' }, { n: 'D4', lyric: 'em' }, { n: 'E4', lyric: 'khen' },
+      { n: 'C4', lyric: 'rằng' }, { n: 'D4', lyric: 'con' }, { n: 'E4', lyric: 'rất' }, { n: 'G4', lyric: 'ngoan' },
+      { n: 'G4', lyric: 'Mẹ' }, { n: 'A4', lyric: 'âu' }, { n: 'G4', lyric: 'yếm' },
+      { n: 'E4', lyric: 'hôn' }, { n: 'D4', lyric: 'đôi' }, { n: 'E4', lyric: 'má' }, { n: 'C4', lyric: 'em!' },
+    ],
+  },
+
+  // 7. Kìa Con Bướm Vàng
   {
     id: 'buom_vang',
     title: 'Kìa Con Bướm Vàng',
@@ -50,6 +157,8 @@ export const SONGS: Song[] = [
       { n: 'C4', lyric: 'Em' }, { n: 'G4', lyric: 'ngồi' }, { n: 'C4', lyric: 'xem!' },
     ],
   },
+
+  // 8. Một Con Vịt
   {
     id: 'mot_con_vit',
     title: 'Một Con Vịt',
@@ -67,6 +176,8 @@ export const SONGS: Song[] = [
       { n: 'D4', lyric: 'vẫy' }, { n: 'E4', lyric: 'cái' }, { n: 'D4', lyric: 'cánh' }, { n: 'C4', lyric: 'cho khô!' },
     ],
   },
+
+  // 9. Bắc Kim Thang
   {
     id: 'bac_kim_thang',
     title: 'Bắc Kim Thang',
@@ -87,6 +198,8 @@ export const SONGS: Song[] = [
       { n: 'C4', lyric: 'tò' }, { n: 'D4', lyric: 'te' }, { n: 'C4', lyric: 'tò te!' },
     ],
   },
+
+  // 10. Cháu Lên Ba
   {
     id: 'chau_len_ba',
     title: 'Cháu Lên Ba',
@@ -103,6 +216,8 @@ export const SONGS: Song[] = [
       { n: 'D4', lyric: 'ông' }, { n: 'C4', lyric: 'bà' }, { n: 'D4', lyric: 'vui' }, { n: 'E4', lyric: 'cấy' }, { n: 'C4', lyric: 'cày!' },
     ],
   },
+
+  // 11. Ngôi Sao Lấp Lánh (Twinkle Star)
   {
     id: 'twinkle_star',
     title: 'Ngôi Sao Lấp Lánh',
